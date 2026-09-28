@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Paleta Vovozinha — Minas rural contemporânea
+   Fica em :root (e nao em @theme) para que os tokens sejam sempre
+   emitidos: assim as utilitarias podem referenciar via var() com
+   seguranca, sem risco de arvore-shake.
+------------------------------------------------------------------- */
+@layer base {
+  :root {
+    /* Paleta da marca */
+    --palette-mata: #263a27;
+    --palette-folha: #3f5638;
+    --palette-oliva: #68704a;
+    --palette-musgo: #7b8158;
+    --palette-madeira: #765238;
+    --palette-terra: #9a7048;
+    --palette-creme: #e9e0cc;
+    --palette-papel: #f4f0e6;
+    --palette-carvao: #171a16;
+
+    /* Hero: tons extraidos da fotografia de referencia */
+    --palette-ouro: #e3b04a;
+    --palette-ouro-claro: #f0c868;
+    --palette-ouro-escuro: #c29338;
+    --palette-marinho: #17233f;
+    --palette-marinho-claro: #24365c;
+    --palette-veu: #0d1526;
+    --palette-estrela: #f0a92b;
+
+    /* Neutros derivados (matiz quente, nao conflitam com a paleta) */
+    --palette-linho: #fffdf8;
+    --palette-linha: #ded3bc;
+    --palette-linha-forte: #b9ac91;
+    --palette-tinta-media: #4b5449;
+    --palette-tinta-tenue: #6f786a;
+    --palette-folha-forte: #2e4030;
+    --palette-musgo-claro: #a9ae8d;
+    --palette-terra-claro: #e0d0b8;
+    --palette-terra-medio: #c2a67f;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Tokens semanticos
+   `inline` grava o valor direto na utilitaria, resolvendo a cadeia
+   de var() em tempo de render.
+------------------------------------------------------------------- */
+@theme inline {
+  /* Tipografia */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-dm-serif), "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-script: var(--font-manuscrita), "Kaushan Script", "Segoe Script", "Bradley Hand", cursive;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
+
+  /* Cores literais da marca */
+  --color-mata: var(--palette-mata);
+  --color-folha: var(--palette-folha);
+  --color-folha-forte: var(--palette-folha-forte);
+  --color-oliva: var(--palette-oliva);
+  --color-musgo: var(--palette-musgo);
+  --color-madeira: var(--palette-madeira);
+  --color-terra: var(--palette-terra);
+  --color-creme: var(--palette-creme);
+  --color-papel: var(--palette-papel);
+  --color-carvao: var(--palette-carvao);
+  --color-linho: var(--palette-linho);
+
+  /* Hero */
+  --color-ouro: var(--palette-ouro);
+  --color-ouro-claro: var(--palette-ouro-claro);
+  --color-ouro-escuro: var(--palette-ouro-escuro);
+  --color-marinho: var(--palette-marinho);
+  --color-marinho-claro: var(--palette-marinho-claro);
+  --color-veu: var(--palette-veu);
+  --color-estrela: var(--palette-estrela);
+
+  /* Aliases semanticos — usados por layout/ e ui/ */
+  --color-canvas: var(--palette-papel);
+  --color-canvas-soft: var(--palette-creme);
+  --color-surface: var(--palette-linho);
+  --color-surface-strong: var(--palette-creme);
+  --color-line: var(--palette-linha);
+  --color-line-strong: var(--palette-linha-forte);
+  --color-ink: var(--palette-carvao);
+  --color-ink-muted: var(--palette-tinta-media);
+  --color-ink-subtle: var(--palette-tinta-tenue);
+
+  /* Escala brand (verdes) */
+  --color-brand-200: var(--palette-musgo-claro);
+  --color-brand-300: var(--palette-musgo);
+  --color-brand-400: var(--palette-oliva);
+  --color-brand-500: var(--palette-folha);
+  --color-brand-600: var(--palette-folha-forte);
+  --color-brand-700: var(--palette-mata);
+
+  /* Escala accent (terras) */
+  --color-accent-200: var(--palette-terra-claro);
+  --color-accent-300: var(--palette-terra-medio);
+  --color-accent-400: var(--palette-terra);
+  --color-accent-500: var(--palette-madeira);
+
+  /* Raio */
+  --radius-xs: 0.375rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2.5rem;
+
+  /* Sombras quentes */
+  --shadow-glow: 0 18px 50px -24px oklch(0.32 0.06 140 / 0.45);
+  --shadow-lift: 0 2px 4px oklch(0.28 0.04 80 / 0.06), 0 16px 40px -20px oklch(0.28 0.04 80 / 0.28);
+  --shadow-inset-frame: inset 0 0 0 1px oklch(1 0 0 / 0.06);
+
+  /* Curvas */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0.24, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  /* Animacoes */
+  --animate-fade-up: fade-up 0.75s var(--ease-out-quint) both;
+  --animate-fade-in: fade-in 0.7s var(--ease-out-quint) both;
+  --animate-rise: rise 0.9s var(--ease-soft) both;
+  --animate-float: float 11s ease-in-out infinite;
+  --animate-drift: drift 24s linear infinite;
+  --animate-marquee-lento: marquee-lento 78s linear infinite;
+}
+
+/* ------------------------------------------------------------------
+   Keyframes
+------------------------------------------------------------------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 44px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--palette-linha);
+    scrollbar-width: thin;
+    scrollbar-color: var(--palette-linha-forte) transparent;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--palette-papel);
+    color: var(--palette-carvao);
+    font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-dm-serif), Georgia, serif;
+    font-weight: 400;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--palette-folha);
+    color: var(--palette-papel);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--palette-folha);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilitarios de layout
+------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 82rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 64rem) {
+    padding-inline: 2.75rem;
+  }
+}
+
+@keyframes marquee-lento {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+/* ------------------------------------------------------------------
+   Texturas — papel, madeira, grao
+------------------------------------------------------------------- */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+@utility paper {
+  background-image:
+    radial-gradient(circle at 18% 24%, oklch(0.55 0.04 85 / 0.05), transparent 62%),
+    radial-gradient(circle at 84% 76%, oklch(0.55 0.04 85 / 0.04), transparent 58%);
+}
+
+@utility wood {
+  background-image: repeating-linear-gradient(
+    92deg,
+    oklch(0.28 0.04 70 / 0.05) 0px,
+    oklch(0.28 0.04 70 / 0.05) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+}
+
+/* ------------------------------------------------------------------
+   Utilitarios decorativos
+------------------------------------------------------------------- */
+/* Titulo com matiz terrosa, sem gradiente tech */
+@utility text-organic {
+  background-image: linear-gradient(
+    96deg,
+    var(--palette-carvao) 8%,
+    var(--palette-folha) 58%,
+    var(--palette-terra) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Carrossel de avaliacoes: fade nas laterais na cor do fundo da section.
+   A mascara faz o trabalho, entao o mesmo utilitario serve em qualquer
+   tom (claro ou escuro) usando currentColor como cor de base. */
+@utility fade-x {
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+/* Halo suave de luz natural, para o topo do hero */
+@utility light-wash {
+  background-image: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    oklch(0.93 0.05 95 / 0.9),
+    transparent 70%
+  );
+}
+
+/* Hero sobre fotografia: veu escuro da esquerda para a direita,
+   garantindo leitura do texto sem apagar a imagem. */
+@utility hero-scrim {
+  background-image:
+    linear-gradient(
+      100deg,
+      rgb(13 21 38 / 0.88) 0%,
+      rgb(13 21 38 / 0.78) 26%,
+      rgb(13 21 38 / 0.46) 50%,
+      rgb(13 21 38 / 0.12) 74%,
+      rgb(13 21 38 / 0.04) 100%
+    ),
+    linear-gradient(to top, rgb(13 21 38 / 0.6) 0%, transparent 38%);
+}
+
+/* Veu superior: sustenta a leitura do menu sobre a foto. */
+@utility hero-top-scrim {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(13 21 38 / 0.62) 0%,
+    rgb(13 21 38 / 0.18) 55%,
+    transparent 100%
+  );
+}
+/* Moldura fina de madeira/contorno */
+@utility frame-wood {
+  box-shadow:
+    0 0 0 1px oklch(0.46 0.08 62 / 0.35),
+    0 0 0 8px oklch(0.93 0.03 85 / 0.55);
+}
+
+/* Revela ao entrar na viewport, sem JS (scroll-driven animation) */
+@utility reveal {
+  animation: fade-up 0.8s var(--ease-out-quint) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
+@utility reveal-scale {
+  animation: rise 0.9s var(--ease-soft) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 42%;
+}
+
+/* Parallax discreto no proprio elemento */
+@utility parallax {
+  animation: parallax-shift linear both;
+  animation-timeline: view();
+  animation-range: entry 0% exit 100%;
+}
+
+@keyframes parallax-shift {
+  from {
+    transform: translate3d(0, -7%, 0);
+  }
+  to {
+    transform: translate3d(0, 7%, 0);
+  }
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 45%, transparent 100%);
+}
+
+@utility mask-fade-radial {
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 30%, transparent 78%);
+}
+
+/* ------------------------------------------------------------------
+   Acessibilidade
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-scale,
+  .parallax,
+  .animate-marquee-lento {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
