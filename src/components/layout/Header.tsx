@@ -29,10 +29,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[var(--ease-out-quint)]",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-500 ease-[var(--ease-out-quint)]",
         scrolled
           ? "border-line/70 bg-papel/90 shadow-lift backdrop-blur-xl"
-          : "border-b border-transparent",
+          : "bg-veu/40 border-b border-white/10 shadow-xs backdrop-blur-md",
       )}
     >
       <Container size="wide" className="flex h-20 items-center justify-between gap-8">

@@ -125,7 +125,8 @@ export function MobileNav({ scrolled = false }: { scrolled?: boolean }) {
                 <div className="border-line/60 text-ink-muted mt-8 flex flex-col gap-1.5 border-t pt-6 text-xs">
                   <p className="text-mata font-semibold">{siteConfig.name}</p>
                   <p>
-                    {siteConfig.address.street} • {siteConfig.address.city} - {siteConfig.address.state}
+                    {siteConfig.address.street} • {siteConfig.address.city} -{" "}
+                    {siteConfig.address.state}
                   </p>
                   <p>{siteConfig.hours.label}</p>
                 </div>

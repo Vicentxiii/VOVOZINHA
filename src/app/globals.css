@@ -125,6 +125,7 @@
   --animate-float: float 11s ease-in-out infinite;
   --animate-drift: drift 24s linear infinite;
   --animate-marquee-lento: marquee-lento 78s linear infinite;
+  --animate-marquee-categorias: marquee-categorias 28s linear infinite;
 }
 
 /* ------------------------------------------------------------------
@@ -249,6 +250,15 @@
 }
 
 @keyframes marquee-lento {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-categorias {
   from {
     transform: translate3d(0, 0, 0);
   }
@@ -405,7 +415,8 @@
   .reveal,
   .reveal-scale,
   .parallax,
-  .animate-marquee-lento {
+  .animate-marquee-lento,
+  .animate-marquee-categorias {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
