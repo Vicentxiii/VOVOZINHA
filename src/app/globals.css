@@ -310,19 +310,30 @@
   );
 }
 
-/* Hero sobre fotografia: veu escuro da esquerda para a direita,
-   garantindo leitura do texto sem apagar a imagem. */
+/* Hero sobre fotografia: no mobile, véu de baixo para cima destacando
+   o texto inferior e mantendo a Vovó perfeitamente visível;
+   no desktop, véu horizontal da esquerda para a direita. */
 @utility hero-scrim {
-  background-image:
-    linear-gradient(
-      100deg,
-      rgb(13 21 38 / 0.88) 0%,
-      rgb(13 21 38 / 0.78) 26%,
-      rgb(13 21 38 / 0.46) 50%,
-      rgb(13 21 38 / 0.12) 74%,
-      rgb(13 21 38 / 0.04) 100%
-    ),
-    linear-gradient(to top, rgb(13 21 38 / 0.6) 0%, transparent 38%);
+  background-image: linear-gradient(
+    to top,
+    rgb(13 21 38 / 0.94) 0%,
+    rgb(13 21 38 / 0.82) 42%,
+    rgb(13 21 38 / 0.3) 72%,
+    transparent 100%
+  );
+
+  @media (width >= 48rem) {
+    background-image:
+      linear-gradient(
+        100deg,
+        rgb(13 21 38 / 0.88) 0%,
+        rgb(13 21 38 / 0.78) 26%,
+        rgb(13 21 38 / 0.46) 50%,
+        rgb(13 21 38 / 0.12) 74%,
+        rgb(13 21 38 / 0.04) 100%
+      ),
+      linear-gradient(to top, rgb(13 21 38 / 0.6) 0%, transparent 38%);
+  }
 }
 
 /* Veu superior: sustenta a leitura do menu sobre a foto. */

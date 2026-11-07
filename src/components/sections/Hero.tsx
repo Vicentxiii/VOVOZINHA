@@ -26,7 +26,7 @@ export function Hero() {
         priority
         sizes="100vw"
         quality={90}
-        className="absolute inset-0 -z-10 object-cover object-center"
+        className="absolute inset-0 -z-10 object-cover [object-position:77%_center] sm:[object-position:74%_center] md:object-center"
       />
       <div aria-hidden="true" className="hero-scrim absolute inset-0 -z-10" />
       <div aria-hidden="true" className="hero-top-scrim absolute inset-0 -z-10" />
